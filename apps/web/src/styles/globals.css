@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  background:
+    linear-gradient(180deg, rgba(240, 253, 244, 0.98), rgba(236, 253, 245, 0.98)),
+    #f0fdf4;
+  color: #0f172a;
+  overscroll-behavior: none;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+.ProseMirror {
+  min-height: 100%;
+  outline: none;
+  padding: 24px 28px 56px;
+}
+
+@media (max-width: 1023px) {
+  .ProseMirror {
+    padding: 18px 16px max(4rem, env(safe-area-inset-bottom));
+  }
+}
+
+.ProseMirror h1 {
+  font-size: 2rem;
+  font-weight: 760;
+  line-height: 1.15;
+  margin: 0 0 1rem;
+}
+
+.ProseMirror h2 {
+  font-size: 1.5rem;
+  font-weight: 720;
+  line-height: 1.2;
+  margin: 1.4rem 0 0.7rem;
+}
+
+.ProseMirror h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 1.2rem 0 0.6rem;
+}
+
+.ProseMirror p {
+  line-height: 1.8;
+  margin: 0 0 0.95rem;
+}
+
+.ProseMirror ul,
+.ProseMirror ol {
+  padding-left: 1.5rem;
+  margin: 0 0 1rem;
+}
+
+.ProseMirror li {
+  margin: 0.25rem 0;
+}
+
+.ProseMirror p.is-editor-empty:first-child::before {
+  color: #94a3b8;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}

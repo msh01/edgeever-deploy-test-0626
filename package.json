@@ -1,0 +1,63 @@
+{
+  "name": "edgeever-deploy-test-0626",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -k -n api,web -c cyan,magenta \"bun run dev:api\" \"bun run dev:web\"",
+    "dev:api": "wrangler dev --local --port 8787",
+    "dev:web": "vite --config apps/web/vite.config.ts --host 127.0.0.1 --port 5173",
+    "build": "bun run build:web",
+    "build:web": "vite build --config apps/web/vite.config.ts",
+    "preview:web": "vite preview --config apps/web/vite.config.ts --host 127.0.0.1 --port 4173",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "db:migrate:local": "wrangler d1 migrations apply DB --local",
+    "db:migrate:remote": "wrangler d1 migrations apply DB --remote",
+    "deploy": "bun run build && bun run db:migrate:remote && wrangler deploy"
+  },
+  "cloudflare": {
+    "bindings": {
+      "DB": {
+        "description": "EdgeEver 的 D1 数据库。用于存储 notebooks、memos、memo_contents、resources 元数据、全文搜索索引、修订记录和审计事件。"
+      },
+      "RESOURCES": {
+        "description": "EdgeEver 的 R2 对象存储桶。用于存储笔记内图片、附件和未来导入导出文件；D1 只保存资源元数据和 memo 关联。"
+      }
+    }
+  },
+  "dependencies": {
+    "@edgeever/shared": "workspace:*",
+    "@hono/zod-validator": "latest",
+    "@tanstack/react-query": "latest",
+    "@tiptap/extension-placeholder": "latest",
+    "@tiptap/react": "latest",
+    "@tiptap/starter-kit": "latest",
+    "class-variance-authority": "latest",
+    "clsx": "latest",
+    "dexie": "latest",
+    "hono": "latest",
+    "lucide-react": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "tailwind-merge": "latest",
+    "zod": "latest"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "latest",
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "@vitejs/plugin-react": "latest",
+    "autoprefixer": "latest",
+    "concurrently": "latest",
+    "postcss": "latest",
+    "tailwindcss": "^3.4.17",
+    "typescript": "latest",
+    "vite": "latest",
+    "wrangler": "latest"
+  }
+}

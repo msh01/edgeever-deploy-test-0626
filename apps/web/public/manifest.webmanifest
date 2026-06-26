@@ -1,0 +1,11 @@
+{
+  "name": "EdgeEver",
+  "short_name": "EdgeEver",
+  "description": "基于 Cloudflare 全家桶自托管的开源印象笔记。",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f0fdf4",
+  "theme_color": "#d1fae5",
+  "lang": "zh-CN",
+  "icons": []
+}
